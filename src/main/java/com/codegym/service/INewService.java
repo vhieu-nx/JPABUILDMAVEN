@@ -1,9 +1,12 @@
 package com.codegym.service;
 
+import com.codegym.dto.NewDTO;
 import com.codegym.model.NewModel;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface INewService {
-	List<NewModel> findAll();
+	List<NewDTO> findAll(Pageable pageable);
+	int getTotalItem();
 }

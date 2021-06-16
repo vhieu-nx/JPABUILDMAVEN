@@ -1,10 +1,11 @@
 package com.codegym.service.impl;
 
+import com.codegym.dto.NewDTO;
 import com.codegym.entity.NewEntity;
-import com.codegym.model.NewModel;
 import com.codegym.repository.NewRepository;
 import com.codegym.service.INewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,18 +18,23 @@ public class NewService implements INewService {
 	private NewRepository repository;
 	
 	@Override
-	public List<NewModel> findAll() {
-		List<NewModel> models = new ArrayList<>();
-		List<NewEntity> entities = repository.findAll();
+	public List<NewDTO> findAll(Pageable pageable) {
+		List<NewDTO> models = new ArrayList<>();
+		List<NewEntity> entities = repository.findAll(pageable).getContent();
 		for (NewEntity item: entities
 			 ) {
-			NewModel newModel = new NewModel();
-			newModel.setTitle(item.getTitle());
-			newModel.setThumbnail(item.getThumbnail());
-			newModel.setShortDescription(item.getShortDescription());
-			newModel.setContent(item.getContent());
-			models.add(newModel);
+			NewDTO newDTO = new NewDTO();
+			newDTO.setTitle(item.getTitle());
+			newDTO.setThumbnail(item.getThumbnail());
+			newDTO.setShortDescription(item.getShortDescription());
+			newDTO.setContent(item.getContent());
+			models.add(newDTO);
 		}
 		return models;
+	}
+
+	@Override
+	public int getTotalItem() {
+		return (int) repository.count();
 	}
 }

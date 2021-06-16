@@ -11,8 +11,8 @@
 
 	<body>
 		<div class="main-content">
-		<form action="#" id="formSubmit" method="get">
-			
+		<form action="<c:url value='/quan-tri/bai-viet/danh-sach?page=${model.page}&limit=${model.limit}'/>" id="formSubmit" method="get">
+
 				<div class="main-content-inner">
 					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 						<ul class="breadcrumb">
@@ -63,7 +63,7 @@
 														<tr>
 															<td>${item.title}</td>
 															<td>${item.shortDescription}</td>
-															<td>																
+															<td>
 																<a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
 																   title="Cập nhật bài viết" href='#'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 																</a>
@@ -71,7 +71,10 @@
 														</tr>
 													</c:forEach>
 												</tbody>
-											</table>											
+											</table>
+											<ul class="pagination" id="pagination"></ul>
+											<input type="hidden" value="" id="page" name="page"/>
+											<input type="hidden" value="" id="limit" name="limit"/>
 										</div>
 									</div>
 								</div>
@@ -83,7 +86,32 @@
 		</div>
 		<!-- /.main-content -->
 		<script>
-		
+			// $(function () {
+			// 	window.pagObj = $('#pagination').twbsPagination({
+			// 		totalPages: 35,
+			// 		visiblePages: 10,
+			// 		startPage:10,
+			// 		onPageClick: function (event, page) {
+			// 			console.info(page + ' (from options)');
+			// 		}
+			// 	});
+			// });
+			var totalPages = ${model.totalPage};
+			var currentPage = ${model.page};
+			$(function () {
+				window.pagObj = $('#pagination').twbsPagination({
+					totalPages: totalPages,
+					visiblePages: 10,
+					startPage: currentPage,
+					onPageClick: function (event, page) {
+						if (currentPage != page) {
+							$('#limit').val(2);
+							$('#page').val(page);
+							$('#formSubmit').submit();
+						}
+					}
+				});
+			});
 		</script>
 	</body>
 
