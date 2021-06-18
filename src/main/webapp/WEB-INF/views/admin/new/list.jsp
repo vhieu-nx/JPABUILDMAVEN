@@ -32,7 +32,8 @@
 											<div class="dt-buttons btn-overlap btn-group">
 												<a flag="info"
 												   class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
-												   title='Thêm bài viết' href='#'>
+												   <c:url var="createNewURL" value="/quan-tri/bai-viet/chinh-sua"/>
+												   title='Thêm bài viết' href='${createNewURL}'>
 															<span>
 																<i class="fa fa-plus-circle bigger-110 purple"></i>
 															</span>
@@ -64,8 +65,11 @@
 															<td>${item.title}</td>
 															<td>${item.shortDescription}</td>
 															<td>
+																<c:url var="updateNewURL" value="/quan-tri/bai-viet/chinh-sua">
+																	<c:param name="id" value="${item.id}"/>
+																</c:url>
 																<a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-																   title="Cập nhật bài viết" href='#'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+																   title="Cập nhật bài viết" href='${updateNewURL}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 																</a>
 															</td>
 														</tr>
