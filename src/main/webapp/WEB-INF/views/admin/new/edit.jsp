@@ -30,11 +30,11 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-xs-12">
-<%--                    <c:if test="${not empty message}">--%>
-<%--                        <div class="alert alert-${alert}">--%>
-<%--                                ${message}--%>
-<%--                        </div>--%>
-<%--                    </c:if>--%>
+                    <c:if test="${not empty message}">
+                        <div class="alert alert-${alert}">
+                                ${message}
+                        </div>
+                    </c:if>
                     <form:form class="form-horizontal" role="form" id="formSubmit" modelAttribute="model">
                         <div class="form-group">
                             <label  class="col-sm-3 control-label no-padding-right">Thể loại:</label>
@@ -107,13 +107,13 @@
 	
     $('#btnAddOrUpdateNew').click(function (e) {
         e.preventDefault();
-        var data = {};
-        var formData = $('#formSubmit').serializeArray();
+        let data = {};
+        let formData = $('#formSubmit').serializeArray();
         $.each(formData, function (i, v) {
             data[""+v.name+""] = v.value;
         });
-        data["content"] = editor.getData();
-        var id = $('#id').val();
+        // data["content"] = editor.getData();
+        let id = $('#newId').val();
         if (id == "") {
             addNew(data);
         } else {
@@ -122,31 +122,32 @@
     });
     function addNew(data) {
         $.ajax({
-            url: '${APIurl}',
+            url: '${newAPI}',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
-                console.log(result);
+                window.location.href="${editNewURL}?id ="+result.id+"&message=insert_success";
             },
             error: function (error) {
-                console.log(error);
+                window.location.href="${newURL}?page=1&limit=2&message=error_system";
             }
         });
     }
     function updateNew(data) {
         $.ajax({
-            url: '${APIurl}',
+            url: '${newAPI}',
             type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
-                console.log(result);
+                window.location.href = "${editNewURL}?id="+result.id+"&message=update_success";
             },
             error: function (error) {
-                console.log(error);
+                // console.log(error);
+                window.location.href = "${editNewURL}?id="+error.id +"&message=error_system";
             }
         });
     }

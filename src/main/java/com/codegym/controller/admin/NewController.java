@@ -30,7 +30,7 @@ public class NewController {
 
 	@RequestMapping(value = "/quan-tri/bai-viet/danh-sach", method = RequestMethod.GET)
 	public ModelAndView showList(@RequestParam("page") int page,
-								 @RequestParam("limit") int limit) {
+								 @RequestParam("limit") int limit,HttpServletRequest request) {
 		NewDTO model = new NewDTO();
 		model.setPage(page);
 		model.setLimit(limit);
@@ -40,6 +40,11 @@ public class NewController {
 		model.setTotalItem(newService.getTotalItem());
 		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
 		mav.addObject("model", model);
+		if (request.getParameter("message") != null) {
+			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			mav.addObject("message", message.get("message"));
+			mav.addObject("alert", message.get("alert"));
+		}
 		return mav;
 	}
 	
@@ -50,11 +55,11 @@ public class NewController {
 		if (id != null) {
 			model = newService.findById(id);
 		}
-//		if (request.getParameter("message") != null) {
-//			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
-//			mav.addObject("message", message.get("message"));
-//			mav.addObject("alert", message.get("alert"));
-//		}
+		if (request.getParameter("message") != null) {
+			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			mav.addObject("message", message.get("message"));
+			mav.addObject("alert", message.get("alert"));
+		}
 		mav.addObject("categories", categoryService.findAll());
 		mav.addObject("model", model);
 		return mav;

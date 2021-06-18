@@ -11,6 +11,8 @@ public interface INewService {
 	List<NewDTO> findAll(Pageable pageable);
 	int getTotalItem();
 	NewDTO findById(Long id);
-
+	NewDTO insert(NewDTO newDTO);
+	NewDTO update(NewDTO updateNew);
+	NewDTO save(NewDTO dto);
 
 }

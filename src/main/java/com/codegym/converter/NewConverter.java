@@ -24,4 +24,12 @@ public class NewConverter {
         result.setThumbnail(newDTO.getThumbnail());
         return result;
     }
+    //tra ve enity dưa tren entity da co
+    public NewEntity toEntity(NewEntity result,NewDTO newDTO){
+        result.setTitle(newDTO.getTitle());
+        result.setShortDescription(newDTO.getShortDescription());
+        result.setContent(newDTO.getContent());
+        result.setThumbnail(newDTO.getThumbnail());
+        return result;
+    }
 }
