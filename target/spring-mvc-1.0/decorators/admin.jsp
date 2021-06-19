@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
      <script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js' />"></script>
+<%--	sweetaleart--%>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<%--	<script src="<c:url value='/template/admin/sweetalert/sweetalert2.min.js' />"></script>--%>
+<%--	<link rel="stylesheet" href="<c:url value='/template/admin/sweetalert/sweetalert2.min.css' />" />--%>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" integrity="sha512-hwwdtOTYkQwW2sedIsbuP1h0mWeJe/hFOfsvNKpRB3CkRxq8EW7QMheec1Sgd8prYxGm1OM9OZcGW7/GUud5Fw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <%-- <script src="<c:url value='/ckeditor/ckeditor.js' />"></script> --%>
 </head>
